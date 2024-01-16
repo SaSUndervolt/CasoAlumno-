@@ -43,6 +43,8 @@ public class form_alumnos extends javax.swing.JFrame {
         btn_guardar = new javax.swing.JButton();
         btn_modificar = new javax.swing.JButton();
         btn_eliminar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txt_rut = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbTotalAlumnos = new javax.swing.JTable();
@@ -97,6 +99,14 @@ public class form_alumnos extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Rut:");
+
+        txt_rut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_rutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -105,19 +115,21 @@ public class form_alumnos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_guardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txt_id, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                             .addComponent(txt_nombres)
-                            .addComponent(txt_apellidos))
-                        .addGap(0, 10, Short.MAX_VALUE))
-                    .addComponent(btn_modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txt_apellidos)
+                            .addComponent(txt_rut))
+                        .addGap(0, 10, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -135,13 +147,17 @@ public class form_alumnos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txt_apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_rut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(33, 33, 33)
                 .addComponent(btn_guardar)
                 .addGap(28, 28, 28)
                 .addComponent(btn_modificar)
                 .addGap(28, 28, 28)
                 .addComponent(btn_eliminar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de alumnos"));
@@ -211,18 +227,18 @@ public class form_alumnos extends javax.swing.JFrame {
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
         Alumnos objetoAlumno = new Alumnos();
-        objetoAlumno.InsertarAlumno(txt_nombres, txt_apellidos);
+        objetoAlumno.InsertarAlumno(txt_nombres, txt_apellidos,txt_rut);
         objetoAlumno.MostrarAlumnos(tbTotalAlumnos);
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void tbTotalAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTotalAlumnosMouseClicked
         Alumnos objetoAlumno = new Alumnos();
-        objetoAlumno.seleccionarAlumno(tbTotalAlumnos, txt_id, txt_nombres, txt_apellidos);
+        objetoAlumno.seleccionarAlumno(tbTotalAlumnos, txt_id, txt_nombres, txt_apellidos,txt_rut);
     }//GEN-LAST:event_tbTotalAlumnosMouseClicked
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         Alumnos objetoAlumno = new Alumnos();
-        objetoAlumno.modificarAlumnos(txt_id,txt_nombres,txt_apellidos);
+        objetoAlumno.modificarAlumnos(txt_id,txt_nombres,txt_apellidos,txt_rut);
         objetoAlumno.MostrarAlumnos(tbTotalAlumnos);
     }//GEN-LAST:event_btn_modificarActionPerformed
 
@@ -231,6 +247,10 @@ public class form_alumnos extends javax.swing.JFrame {
         objetoAlumno.EliminarAlumnos(txt_id);
         objetoAlumno.MostrarAlumnos(tbTotalAlumnos);
     }//GEN-LAST:event_btn_eliminarActionPerformed
+
+    private void txt_rutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_rutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_rutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,6 +294,7 @@ public class form_alumnos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -283,5 +304,6 @@ public class form_alumnos extends javax.swing.JFrame {
     private javax.swing.JTextField txt_apellidos;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_nombres;
+    private javax.swing.JTextField txt_rut;
     // End of variables declaration//GEN-END:variables
 }
