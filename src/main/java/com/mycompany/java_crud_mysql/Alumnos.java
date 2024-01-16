@@ -28,6 +28,7 @@ public class Alumnos {
     int codigo;
     String nombreAlumnos;
     String apellidoAlumnos;
+    String rut;
 
     public int getCodigo() {
         return codigo;
@@ -52,6 +53,16 @@ public class Alumnos {
     public void setApellidoAlumnos(String apellidoAlumnos) {
         this.apellidoAlumnos = apellidoAlumnos;
     }
+    
+    public String getrut() {
+        return rut;
+    }
+
+    public void setrut(String rut) {
+        this.rut = rut;
+    }
+    
+    
 
     public void InsertarAlumno(JTextField paramNombres, JTextField paramApellidos) {
         // Obtén el texto de los JTextField
