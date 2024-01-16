@@ -33,6 +33,7 @@ public class form_alumnos extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -61,6 +62,8 @@ public class form_alumnos extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -229,6 +232,11 @@ public class form_alumnos extends javax.swing.JFrame {
         Alumnos objetoAlumno = new Alumnos();
         objetoAlumno.InsertarAlumno(txt_nombres, txt_apellidos,txt_rut);
         objetoAlumno.MostrarAlumnos(tbTotalAlumnos);
+        
+        txt_nombres.setText("");
+        txt_apellidos.setText("");
+        txt_rut.setText("");
+        txt_id.setText("");
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void tbTotalAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTotalAlumnosMouseClicked
@@ -240,12 +248,22 @@ public class form_alumnos extends javax.swing.JFrame {
         Alumnos objetoAlumno = new Alumnos();
         objetoAlumno.modificarAlumnos(txt_id,txt_nombres,txt_apellidos,txt_rut);
         objetoAlumno.MostrarAlumnos(tbTotalAlumnos);
+        
+        txt_nombres.setText("");
+        txt_apellidos.setText("");
+        txt_rut.setText("");
+        txt_id.setText("");
     }//GEN-LAST:event_btn_modificarActionPerformed
 
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
         Alumnos objetoAlumno = new Alumnos();
         objetoAlumno.EliminarAlumnos(txt_id);
         objetoAlumno.MostrarAlumnos(tbTotalAlumnos);
+        
+        txt_nombres.setText("");
+        txt_apellidos.setText("");
+        txt_rut.setText("");
+        txt_id.setText("");
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
     private void txt_rutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_rutActionPerformed
@@ -300,6 +318,7 @@ public class form_alumnos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tbTotalAlumnos;
     private javax.swing.JTextField txt_apellidos;
     private javax.swing.JTextField txt_id;
