@@ -4,6 +4,7 @@
  */
 package com.mycompany.java_crud_mysql;
 
+import static com.mycompany.java_crud_mysql.RutValidator.validaRut;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.sql.CallableStatement;
@@ -17,6 +18,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 /**
  *
@@ -64,13 +66,14 @@ public class Alumnos {
     
     
 
-    public void InsertarAlumno(JTextField paramNombres, JTextField paramApellidos) {
+    public void InsertarAlumno(JTextField paramNombres, JTextField paramApellidos, JTextField paramRut) {
         // Obtén el texto de los JTextField
         String nombres = paramNombres.getText();
         String apellidos = paramApellidos.getText();
+        String rut = paramRut.getText();
 
         // Verificamos si alguno de los campos está vacío
-        if (nombres.isEmpty() || apellidos.isEmpty()) {
+        if (nombres.isEmpty() || apellidos.isEmpty() || rut.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, completa todos los campos.", "Error de validación", JOptionPane.ERROR_MESSAGE);
             return;  // Sale del método si hay campos vacíos
         }
@@ -80,19 +83,28 @@ public class Alumnos {
             JOptionPane.showMessageDialog(null, "Los nombres y apellidos deben contener solo letras y espacios.", "Error de validación", JOptionPane.ERROR_MESSAGE);
             return;  // Sale del método si hay caracteres no permitidos
         }
+       
+        // Verifica si el RUT es válido
+        if (!validaRut (rut)) {
+
+            JOptionPane.showMessageDialog(null, "El RUT ingresado no es válido.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+            return;  // Sale del método si el RUT no es válido
+        }
 
         // Continúa con el proceso de inserción si no hay problemas de validación
         setNombreAlumnos(nombres);
         setApellidoAlumnos(apellidos);
+        setrut(rut);
 
         conexion objetoConexion = new conexion();
 
-        String consulta = "INSERT INTO Alumnos (nombres, apellidos) VALUES (?, ?);";
+        String consulta = "INSERT INTO Alumnos (nombres, apellidos, rut) VALUES (?, ? ,?);";
 
         try {
             CallableStatement cs = objetoConexion.estableceConexion().prepareCall(consulta);
             cs.setString(1, getNombreAlumnos());
             cs.setString(2, getApellidoAlumnos());
+            cs.setString(3, getrut());
 
             cs.execute();
 
@@ -127,12 +139,13 @@ public class Alumnos {
         modelo.addColumn("id");
         modelo.addColumn("Nombres");
         modelo.addColumn("Apellidos");
+        modelo.addColumn("Rut");
 
         paramTablaTotalAlumnos.setModel(modelo);
 
         sql = "select * from Alumnos;";
 
-        String[] datos = new String[3];
+        String[] datos = new String[4];
         Statement st;
 
         try {
@@ -146,6 +159,7 @@ public class Alumnos {
                 datos[0] = rs.getString(1);
                 datos[1] = rs.getString(2);
                 datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
 
                 modelo.addRow(datos);
 
@@ -160,7 +174,7 @@ public class Alumnos {
 
     }
 
-    public void seleccionarAlumno(JTable paramTablaAlumnos, JTextField paramId, JTextField paramNombres, JTextField paramApellidos) {
+    public void seleccionarAlumno(JTable paramTablaAlumnos, JTextField paramId, JTextField paramNombres, JTextField paramApellidos, JTextField paramRut) {
 
         try {
 
@@ -171,6 +185,7 @@ public class Alumnos {
                 paramId.setText(paramTablaAlumnos.getValueAt(fila, 0).toString());
                 paramNombres.setText(paramTablaAlumnos.getValueAt(fila, 1).toString());
                 paramApellidos.setText(paramTablaAlumnos.getValueAt(fila, 2).toString());
+                paramRut.setText(paramTablaAlumnos.getValueAt(fila,3).toString());
 
             } else {
 
@@ -186,7 +201,7 @@ public class Alumnos {
 
     }
 
-    public void modificarAlumnos(JTextField paramCodigo, JTextField paramNombres, JTextField paramApellidos) {
+    public void modificarAlumnos(JTextField paramCodigo, JTextField paramNombres, JTextField paramApellidos, JTextField paramRut) {
         // Verificamos si se ha seleccionado un código de alumno
         if (paramCodigo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Seleccione un alumno para modificar.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -196,17 +211,19 @@ public class Alumnos {
         setCodigo(Integer.parseInt(paramCodigo.getText()));
         setNombreAlumnos(paramNombres.getText());
         setApellidoAlumnos(paramApellidos.getText());
+        setrut(paramRut.getText());
 
         conexion objetoConexion = new conexion();
 
-        String consulta = "update Alumnos SET alumnos.nombres =?, alumnos.apellidos =? where alumnos.id =?;";
+        String consulta = "update Alumnos SET alumnos.nombres =?, alumnos.apellidos =?, alumnos.rut =? where alumnos.id =?;";
 
         try {
             CallableStatement cs = objetoConexion.estableceConexion().prepareCall(consulta);
 
             cs.setString(1, getNombreAlumnos());
             cs.setString(2, getApellidoAlumnos());
-            cs.setInt(3, getCodigo());
+            cs.setInt(4, getCodigo());
+            cs.setString(3,getrut());
 
             cs.execute();
             JOptionPane.showMessageDialog(null, "Modificación exitosa");
