@@ -4,16 +4,27 @@
  */
 package com.mycompany.java_crud_mysql;
 
+import com.mysql.cj.protocol.Resultset;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author lalit
  */
 public class Login extends javax.swing.JFrame {
-
+    
+    conexion objetoConexion = new conexion();
 
     public Login() {
         initComponents();
@@ -23,6 +34,8 @@ public class Login extends javax.swing.JFrame {
         lbl_logo.setIcon(new ImageIcon(img.getScaledInstance(lbl_logo.getWidth(), lbl_logo.getHeight(), Image.SCALE_SMOOTH)));
         this.setIconImage(img);
         this.setLocationRelativeTo(null);
+        objetoConexion = new conexion();
+        objetoConexion.estableceConexion();
     }
 
   
@@ -63,7 +76,29 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarActionPerformed
-        // TODO add your handling code here:
+
+        try {
+            String user = txt_usuario.getText();
+            String password = String.valueOf(txt_contrasena.getPassword());
+            String query = "SELECT * FROM login WHERE user='" + user + "' and password='" + password + "'";
+            Statement st = objetoConexion.estableceConexion().createStatement();
+            ResultSet rs = st.executeQuery(query);
+            if (rs.next()) {
+                String nombreUsuario = rs.getString("user");
+                JOptionPane.showMessageDialog(this, "Bienvenido, " + nombreUsuario);
+
+                // Redirigir a otro JFrame
+                form_alumnos otroFrame = new form_alumnos();
+                otroFrame.setVisible(true);
+
+                // Cerrar el JFrame actual
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "El usuario no está en la base de datos");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_iniciarActionPerformed
 
     /**
