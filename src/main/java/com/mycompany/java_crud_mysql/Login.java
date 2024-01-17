@@ -18,7 +18,8 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.setTitle("LOGIN");
-        Image img =Toolkit.getDefaultToolkit().getImage(getClass().getResource("C:\\Users\\lalit\\Documents\\NetBeansProjects\\java_crud_mysql\\src\\main\\java\\com\\mycompany\\img\\logo.png"));
+        this.setSize(550,550);
+        Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/mycompany/img/logo.png"));
         lbl_logo.setIcon(new ImageIcon(img.getScaledInstance(lbl_logo.getWidth(), lbl_logo.getHeight(), Image.SCALE_SMOOTH)));
         this.setIconImage(img);
         this.setLocationRelativeTo(null);
@@ -39,14 +40,14 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 175, 224, 40));
-        getContentPane().add(txt_contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 265, 224, 40));
+        getContentPane().add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 224, 40));
+        getContentPane().add(txt_contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 224, 40));
 
         jLabel1.setText("Usuario");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
 
         jLabel2.setText("contraseña");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
 
         btn_iniciar.setText("Iniciar Sesión ");
         btn_iniciar.addActionListener(new java.awt.event.ActionListener() {
@@ -60,7 +61,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(btn_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 154, 61));
 
         lbl_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/img/logo.png"))); // NOI18N
-        getContentPane().add(lbl_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 180, 110));
+        getContentPane().add(lbl_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 180, 130));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -98,6 +99,7 @@ public class Login extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Login().setVisible(true);
             }
