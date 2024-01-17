@@ -11,7 +11,7 @@ package com.mycompany.java_crud_mysql;
 public class inicio {
     
     public static void main(String[] args) {
-        form_alumnos objetoFormulario = new form_alumnos();
+        Login objetoFormulario = new Login();
         objetoFormulario.setVisible(true);
         
     }
