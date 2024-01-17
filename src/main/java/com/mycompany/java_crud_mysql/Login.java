@@ -94,7 +94,7 @@ public class Login extends javax.swing.JFrame {
                 // Cerrar el JFrame actual
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "El usuario no está en la base de datos");
+                JOptionPane.showMessageDialog(this, "Usuario no registrado");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
