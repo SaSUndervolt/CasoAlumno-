@@ -31,23 +31,21 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         txt_usuario = new javax.swing.JTextField();
-        txt_contrasenia = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btn_iniciar = new javax.swing.JButton();
-        btn_cancelar = new javax.swing.JButton();
         lbl_logo = new javax.swing.JLabel();
+        txt_contrasena = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 224, 40));
-        getContentPane().add(txt_contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 224, 40));
+        getContentPane().add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 230, 40));
 
         jLabel1.setText("Usuario");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, -1, -1));
 
         jLabel2.setText("contraseña");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, -1, -1));
 
         btn_iniciar.setText("Iniciar Sesión ");
         btn_iniciar.addActionListener(new java.awt.event.ActionListener() {
@@ -55,13 +53,11 @@ public class Login extends javax.swing.JFrame {
                 btn_iniciarActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 154, 61));
-
-        btn_cancelar.setText("Cancelar");
-        getContentPane().add(btn_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 154, 61));
+        getContentPane().add(btn_iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 154, 61));
 
         lbl_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/img/logo.png"))); // NOI18N
-        getContentPane().add(lbl_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 180, 130));
+        getContentPane().add(lbl_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 180, 160));
+        getContentPane().add(txt_contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 230, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -107,12 +103,11 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_iniciar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lbl_logo;
-    private javax.swing.JTextField txt_contrasenia;
+    private javax.swing.JPasswordField txt_contrasena;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 }
